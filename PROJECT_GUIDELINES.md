@@ -205,7 +205,7 @@ Every resource exposes the same REST surface:
 - All environment-specific values come from `.env` via `@nestjs/config` (global).
 - `.env` is git-ignored; `.env.example` documents every variable and is committed.
 - Required variables: `MONGODB_URI`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `ADMIN_EMAIL`,
-  `ADMIN_PASSWORD`, `PORT`, `UPLOAD_DIR`.
+  `ADMIN_PASSWORD`, `PORT`, `UPLOAD_DIR`, `CORS_ORIGINS`.
 - Never hard-code a secret, connection string, or port. Never commit `.env`.
 
 ---

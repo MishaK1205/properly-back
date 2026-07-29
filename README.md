@@ -145,3 +145,39 @@ npm run start:prod  # run compiled app
 npm run lint        # eslint
 npm run test        # unit tests
 ```
+
+## Deployment (Railway)
+
+`railway.json` configures the build (`npm ci && npm run build`), the start command
+(`npm run start:prod`) and a health check against `/health`.
+
+**1. Environment variables** — set these in the Railway service (Variables tab):
+
+| Variable         | Value                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| `MONGODB_URI`    | MongoDB Atlas connection string (or Railway's MongoDB plugin) |
+| `JWT_SECRET`     | long random string                                            |
+| `JWT_EXPIRES_IN` | e.g. `1d`                                                     |
+| `ADMIN_EMAIL`    | initial admin email                                           |
+| `ADMIN_PASSWORD` | initial admin password                                        |
+| `CORS_ORIGINS`   | `https://properly.ge,https://www.properly.ge,https://*.vercel.app` |
+| `UPLOAD_DIR`     | `/data/uploads` (mount path of the volume, see below)         |
+| `NODE_ENV`       | `production`                                                  |
+
+Do **not** set `PORT` — Railway injects it and the app binds to it on `0.0.0.0`.
+
+**2. Persistent storage** — uploaded images are written to disk, and Railway containers
+have an ephemeral filesystem, so files are lost on every redeploy unless a volume is
+attached. Add a volume to the service, mount it at `/data`, and set `UPLOAD_DIR=/data/uploads`.
+
+**3. Frontend** — point the Vercel app at the Railway URL (or a custom domain such as
+`api.properly.ge` added under the service's Settings → Networking).
+
+### CORS
+
+Allowed origins come from `CORS_ORIGINS` (comma-separated). A `*` inside an entry matches a
+single hostname label, so `https://*.vercel.app` covers preview deployments. `*` on its own
+allows any origin. When the variable is unset, the defaults in `src/main.ts` apply:
+`properly.ge`, `www.properly.ge`, `*.vercel.app` and localhost dev servers. Only
+`Content-Type` and `Authorization` request headers are allowed, which is all the JWT
+`Bearer` flow needs.
