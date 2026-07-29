@@ -148,8 +148,8 @@ npm run test        # unit tests
 
 ## Deployment (Railway)
 
-`railway.json` configures the build (`npm ci && npm run build`), the start command
-(`npm run start:prod`) and a health check against `/health`.
+`railway.json` configures the build (`npm run build` — Nixpacks runs `npm ci` itself in the
+install phase), the start command (`npm run start:prod`) and a health check against `/health`.
 
 **1. Environment variables** — set these in the Railway service (Variables tab):
 
