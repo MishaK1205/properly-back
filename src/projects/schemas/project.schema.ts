@@ -151,13 +151,13 @@ export class Project {
   @Prop({ type: [{ type: Types.ObjectId, ref: Image.name }], default: [] })
   projectImages: Types.ObjectId[];
 
-  @Prop({ required: true, trim: true })
+  @Prop({ trim: true })
   projectLocationGe: string;
 
   @Prop({ required: true, trim: true })
   projectLocationEn: string;
 
-  @Prop({ required: true, trim: true })
+  @Prop({ trim: true })
   projectLocationRu: string;
 
   @Prop({ required: true })
@@ -178,16 +178,16 @@ export class Project {
   @Prop({ type: [String], default: [] })
   projectAdvantagesRu: string[];
 
-  @Prop({ required: true })
+  @Prop()
   paymentDescriptionGe: string;
 
-  @Prop({ required: true })
+  @Prop()
   paymentDescriptionEn: string;
 
-  @Prop({ required: true })
+  @Prop()
   paymentDescriptionRu: string;
 
-  @Prop({ type: ProjectDescriptionSchema, required: true })
+  @Prop({ type: ProjectDescriptionSchema })
   projectDescription: ProjectDescription;
 
   @Prop({ type: [String], default: [] })
@@ -199,61 +199,61 @@ export class Project {
   @Prop({ type: [String], default: [] })
   verificationChecklistRu: string[];
 
-  @Prop({ required: true })
+  @Prop()
   lastVerified: Date;
 
   @Prop({ type: [InvestmentCardSchema], default: [] })
   investmentCards: InvestmentCard[];
 
-  @Prop({ required: true })
+  @Prop()
   buildingTypeGe: string;
 
-  @Prop({ required: true })
+  @Prop()
   buildingTypeEn: string;
 
-  @Prop({ required: true })
+  @Prop()
   buildingTypeRu: string;
 
-  @Prop({ required: true, min: 0 })
+  @Prop({ min: 0 })
   totalFloors: number;
 
-  @Prop({ required: true, min: 0 })
+  @Prop({ min: 0 })
   unitsInBuilding: number;
 
-  @Prop({ required: true })
+  @Prop()
   unitSizesAvailable: string;
 
-  @Prop({ required: true })
+  @Prop()
   finishingGe: string;
 
-  @Prop({ required: true })
+  @Prop()
   finishingEn: string;
 
-  @Prop({ required: true })
+  @Prop()
   finishingRu: string;
 
-  @Prop({ required: true })
+  @Prop()
   furniturePackageGe: string;
 
-  @Prop({ required: true })
+  @Prop()
   furniturePackageEn: string;
 
-  @Prop({ required: true })
+  @Prop()
   furniturePackageRu: string;
 
-  @Prop({ required: true })
+  @Prop()
   strManagementOnSiteGe: string;
 
-  @Prop({ required: true })
+  @Prop()
   strManagementOnSiteEn: string;
 
-  @Prop({ required: true })
+  @Prop()
   strManagementOnSiteRu: string;
 
-  @Prop({ required: true })
+  @Prop()
   distanceToSea: string;
 
-  @Prop({ required: true })
+  @Prop()
   distanceToCityCenter: string;
 
   @Prop({ type: [{ type: Types.ObjectId, ref: Image.name }], default: [] })

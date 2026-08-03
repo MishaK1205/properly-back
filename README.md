@@ -178,6 +178,12 @@ attached. Add a volume to the service, mount it at `/data`, and set `UPLOAD_DIR=
 Allowed origins come from `CORS_ORIGINS` (comma-separated). A `*` inside an entry matches a
 single hostname label, so `https://*.vercel.app` covers preview deployments. `*` on its own
 allows any origin. When the variable is unset, the defaults in `src/main.ts` apply:
-`properly.ge`, `www.properly.ge`, `*.vercel.app` and localhost dev servers. Only
-`Content-Type` and `Authorization` request headers are allowed, which is all the JWT
+`properly.ge`, `www.properly.ge` and `*.vercel.app`.
+
+On top of the configured list, dev origins are always allowed on any port: `localhost`,
+`127.0.0.1`, `[::1]` and private LAN ranges (`10.x`, `192.168.x`, `172.16–31.x`). So a
+frontend on `http://localhost:4200` can call both the local and the deployed API without
+extra configuration.
+
+Only `Content-Type` and `Authorization` request headers are allowed, which is all the JWT
 `Bearer` flow needs.

@@ -8,8 +8,19 @@ const DEFAULT_ALLOWED_ORIGINS = [
   'https://properly.ge',
   'https://www.properly.ge',
   'https://*.vercel.app',
-  'http://localhost:3000',
-  'http://localhost:5173',
+];
+
+/**
+ * Development origins that stay allowed on top of `CORS_ORIGINS`, so a frontend
+ * served from localhost or a machine on the LAN can talk to any deployment.
+ */
+const LOCAL_ORIGIN_MATCHERS = [
+  /^https?:\/\/localhost(:\d+)?$/,
+  /^https?:\/\/127\.0\.0\.1(:\d+)?$/,
+  /^https?:\/\/\[::1\](:\d+)?$/,
+  /^https?:\/\/10(\.\d{1,3}){3}(:\d+)?$/,
+  /^https?:\/\/192\.168(\.\d{1,3}){2}(:\d+)?$/,
+  /^https?:\/\/172\.(1[6-9]|2\d|3[01])(\.\d{1,3}){2}(:\d+)?$/,
 ];
 
 function setupSwagger(app: INestApplication): void {
@@ -50,8 +61,10 @@ function getCorsOptions(): CorsOptions {
   const allowed = configured.length ? configured : DEFAULT_ALLOWED_ORIGINS;
 
   return {
-    origin: allowed.includes('*') ? true : allowed.map(toOriginMatcher),
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    origin: allowed.includes('*')
+      ? true
+      : [...allowed.map(toOriginMatcher), ...LOCAL_ORIGIN_MATCHERS],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
     maxAge: 86400,

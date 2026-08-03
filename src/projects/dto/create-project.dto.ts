@@ -5,6 +5,7 @@ import {
   IsMongoId,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Max,
   Min,
@@ -175,6 +176,7 @@ export class CreateProjectDto {
   @IsMongoId({ each: true })
   projectImages: string[];
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   projectLocationGe: string;
@@ -183,6 +185,7 @@ export class CreateProjectDto {
   @IsNotEmpty()
   projectLocationEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   projectLocationRu: string;
@@ -197,123 +200,153 @@ export class CreateProjectDto {
   @Max(180)
   projectLongitude: number;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => ProjectDescriptionCardDto)
   projectDescriptionCards: ProjectDescriptionCardDto[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   projectAdvantagesGe: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   projectAdvantagesEn: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   projectAdvantagesRu: string[];
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   paymentDescriptionGe: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   paymentDescriptionEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   paymentDescriptionRu: string;
 
+  @IsOptional()
   @ValidateNested()
   @Type(() => ProjectDescriptionDto)
   projectDescription: ProjectDescriptionDto;
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   verificationChecklistGe: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   verificationChecklistEn: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   verificationChecklistRu: string[];
 
+  @IsOptional()
   @IsDateString()
   lastVerified: string;
 
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => InvestmentCardDto)
   investmentCards: InvestmentCardDto[];
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   buildingTypeGe: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   buildingTypeEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   buildingTypeRu: string;
 
+  @IsOptional()
   @IsNumber()
   @Min(0)
   totalFloors: number;
 
+  @IsOptional()
   @IsNumber()
   @Min(0)
   unitsInBuilding: number;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   unitSizesAvailable: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   finishingGe: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   finishingEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   finishingRu: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   furniturePackageGe: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   furniturePackageEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   furniturePackageRu: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   strManagementOnSiteGe: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   strManagementOnSiteEn: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   strManagementOnSiteRu: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   distanceToSea: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   distanceToCityCenter: string;
@@ -323,24 +356,29 @@ export class CreateProjectDto {
   @IsMongoId({ each: true })
   floorPlanImages: string[];
 
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => PricingBySquareMeterDto)
   pricingBySquareMeters: PricingBySquareMeterDto[];
 
+  @IsOptional()
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => PaymentPlanDto)
   paymentPlans: PaymentPlanDto[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   paymentAdvantagesGe: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   paymentAdvantagesEn: string[];
 
+  @IsOptional()
   @IsArray()
   @IsString({ each: true })
   paymentAdvantagesRu: string[];
